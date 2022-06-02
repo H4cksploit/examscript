@@ -19,9 +19,9 @@ read url
 echo
 if [ $tool -eq 1 ];
 then
-echo "result of whois tool:"
+echo "result of ip resolution:"
 echo
-ping -c 1 $url 
+ping -c 1 $url >> ipresolution.txt
 echo
 echo "------------------------------------------------------------------------------------"
 echo "DIG  RESULT"
@@ -29,8 +29,8 @@ echo "--------------------------------------------------------------------------
 echo
 echo" file Saved "
 echo
-dig $url
-echo Processing domain: $d;  dig $d | grep -v "^;" | tee ${d}result.txt; 
+dig $url >> digresult.txt
+echo 
 echo
 echo
 echo
@@ -51,7 +51,7 @@ elif [ $tool -eq 3 ];
 then
 echo "Here is the result of theHarvester tool:"
 echo
-theHarvester -d $url -l 500 -b all  -f harvesterresult
+theHarvester -d $url -l 500 -b all  -f harvesterresult >> harvester.txt
 echo
 echo "------------------------------------------------------------------------------------------------------------------------------------"
 echo 
@@ -59,7 +59,7 @@ elif [ $tool -eq 4 ];
 then
 echo "Here is the result of resolution of ports and os :"
 echo
-nmap -sV -Pn  -A -O $url -o nmapresult /home/kali/Desktop
+nmap -sV -Pn  -A -O $url -o nmapresult.txt
 echo
 echo "------------------------------------------------------------------------------------------------------------------------------------"
 echo
@@ -67,10 +67,10 @@ elif [ $tool -eq 5 ];
 then
 echo "result of nslookup:"
 nslookup $url
-
 echo
 echo
-
+echo
+echo
 echo
 echo  "all Result"
 ping -c 1 $url 
@@ -81,35 +81,34 @@ echo "--------------------------------------------------------------------------
 echo
 echo" file Saved "
 echo
-
-echo Processing domain: $d;  dig $d | grep -v "^;" | tee ${d}result.txt;
+dig $url >> dig.txt
+echo 
 echo
 echo "---------------------------------------------"
-echo      "Here is the result of whois tool:"
+echo      "result of ip resolution:"
 echo "---------------------------------------------"
 echo
 sublist3r -d $url
 echo
 echo "---------------------------------------------"
-echo    "Here is the result of sublist3r tool:"
+echo    "result of sublist3r tool:"
 echo "---------------------------------------------"
-theHarvester -d $url -l 500 -b all
+theHarvester -d $url -l 500 -b all -f harvesterresult >> harvester.txt
 echo
 echo "---------------------------------------------"
-echo   "Here is the result of theHarvester tool:"
+echo   "result of theHarvester tool:"
 echo "---------------------------------------------"
 echo
 nslookup $url
 echo "---------------------------------------------"
-echo "Here is the result of resolution of IP address:"
 echo "---------------------------------------------"
 echo
 
-echo" here is nmap result"
+echo" nmap result"
 echo 
-nmap -sV -Pn  -A -O $url -o nmapresult /home/kali/Desktop
+nmap -sV -Pn  -A -O $url -o nmapresult 
 echo "------------------------------------------------------------------------------------------------------------------------------------"
-echo "Thanks to used it:"
+
 
 fi
 
