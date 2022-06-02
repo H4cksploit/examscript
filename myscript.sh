@@ -29,11 +29,11 @@ echo "--------------------------------------------------------------------------
 echo
 echo" file Saved "
 echo
-
+dig $url
 echo Processing domain: $d;  dig $d | grep -v "^;" | tee ${d}result.txt; 
 echo
 echo
-dig $url
+echo
 echo
 echo
 echo
